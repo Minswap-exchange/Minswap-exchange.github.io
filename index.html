@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minswap — The Leading DEX on Cardano | Swap, Farm, Earn</title>
+    <meta name="description" content="Minswap is Cardano's top DEX with 70% of trading volume. Swap ADA tokens, earn yield, and farm MIN rewards. Community-driven, no VC backing.">
+    <link rel="canonical" href="https://minswap-exchange.github.io/">
+    <meta property="og:title" content="Minswap — The Leading DEX on Cardano">
+    <meta property="og:description" content="Trade Cardano tokens, earn yields, and stake for real yield. 5.9M+ trades, $7B+ volume.">
+    <meta property="og:url" content="https://minswap-exchange.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Minswap — Leading Cardano DEX">
+    <meta name="twitter:description" content="70% of Cardano DEX volume. Swap, farm, earn. Community-first.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #F8F9FD;
+            --color-bg-white: #FFFFFF;
+            --color-bg-card: #FFFFFF;
+            --color-bg-input: #F0F2F8;
+            --color-text: #1A1D2E;
+            --color-text-secondary: #6B7194;
+            --color-blue: #4A6CF7;
+            --color-blue-hover: #3A5CE5;
+            --color-blue-soft: rgba(74,108,247,0.08);
+            --color-blue-glow: rgba(74,108,247,0.12);
+            --color-lavender: #C8CFFB;
+            --color-border: #E4E7F0;
+            --color-border-hover: rgba(74,108,247,0.25);
+            --color-success: #22C55E;
+            --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --radius-xl: 24px;
+            --radius-full: 50px;
+            --shadow-card: 0 2px 16px rgba(26,29,46,0.04);
+            --shadow-hover: 0 8px 28px rgba(74,108,247,0.1);
+            --max-width: 1140px;
+            --spacing-section: 100px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-primary); color: var(--color-text); background: var(--color-bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        .container { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.94); backdrop-filter: blur(16px); border-bottom: 1px solid var(--color-border); }
+        .nav-inner { max-width: var(--max-width); margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { font-size: 1.2rem; font-weight: 800; color: var(--color-blue); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+        .nav-logo-icon { font-size: 1.4rem; }
+        .nav-links { display: flex; align-items: center; gap: 24px; list-style: none; }
+        .nav-links a { color: var(--color-text-secondary); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--color-text); }
+        .nav-cta { background: var(--color-text); color: #fff; padding: 9px 22px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; display: flex; align-items: center; gap: 6px; }
+        .nav-cta:hover { background: var(--color-blue); }
+        .hamburger { display: none; background: none; border: none; cursor: pointer; }
+        .hamburger span { display: block; width: 20px; height: 2px; background: var(--color-text); margin: 4px 0; }
+
+        .hero { padding: 140px 0 80px; text-align: center; background: var(--color-bg-white); }
+        .hero-tokens { display: flex; justify-content: center; gap: 12px; margin-bottom: 28px; }
+        .hero-token { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.75rem; }
+        .hero-token:nth-child(1) { background: #D6F0FF; color: #0284C7; }
+        .hero-token:nth-child(2) { background: #E8D5F5; color: #7C3AED; }
+        .hero-token:nth-child(3) { background: #FEF3C7; color: #B45309; }
+        .hero-token:nth-child(4) { background: #D1FAE5; color: #059669; }
+        .hero-token:nth-child(5) { background: #E0E7FF; color: #4338CA; }
+        .hero-token:nth-child(6) { background: #F0F2F8; color: #374151; }
+        .hero h1 { font-size: 3rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 12px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .hero h1 span { color: var(--color-blue); }
+
+        .swap-card { max-width: 420px; margin: 32px auto 0; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 24px; box-shadow: var(--shadow-card); }
+        .swap-input { background: var(--color-bg-input); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 16px; margin-bottom: 8px; }
+        .swap-label { font-size: 0.78rem; color: var(--color-text-secondary); margin-bottom: 6px; }
+        .swap-row { display: flex; justify-content: space-between; align-items: center; }
+        .swap-amount { font-size: 1.4rem; font-weight: 700; color: var(--color-text-secondary); }
+        .swap-token { display: flex; align-items: center; gap: 6px; background: var(--color-bg); padding: 6px 14px; border-radius: var(--radius-full); font-size: 0.85rem; font-weight: 600; border: 1px solid var(--color-border); }
+        .swap-arrow { text-align: center; font-size: 1.1rem; color: var(--color-text-secondary); padding: 4px 0; }
+        .swap-btn { width: 100%; background: var(--color-blue); color: #fff; padding: 14px; border: none; border-radius: var(--radius-md); font-family: var(--font-primary); font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 12px; transition: background 0.2s; }
+        .swap-btn:hover { background: var(--color-blue-hover); }
+        .hero-sub { text-align: center; font-size: 0.9rem; color: var(--color-text-secondary); margin-top: 20px; max-width: 400px; margin-left: auto; margin-right: auto; }
+
+        section { padding: var(--spacing-section) 0; }
+        .section-label { display: inline-block; color: var(--color-blue); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 12px; }
+        .section-title { font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 16px; }
+        .section-subtitle { font-size: 1rem; color: var(--color-text-secondary); max-width: 500px; line-height: 1.7; }
+        .section-header { text-align: center; margin-bottom: 52px; }
+        .section-header .section-subtitle { margin: 0 auto; }
+
+        .live-widgets { background: var(--color-bg-white); }
+        .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        .widget-card { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius-xl); overflow: hidden; }
+        .widget-card-header { padding: 16px 20px; border-bottom: 1px solid var(--color-border); font-weight: 700; font-size: 0.92rem; }
+
+        .stats-strip { background: var(--color-bg-white); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+        .stat-item { text-align: center; padding: 36px 16px; border-right: 1px solid var(--color-border); }
+        .stat-item:last-child { border-right: none; }
+        .stat-value { font-size: 1.8rem; font-weight: 800; color: var(--color-blue); }
+        .stat-label { font-size: 0.8rem; color: var(--color-text-secondary); margin-top: 4px; }
+
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .feature-card { background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 32px 24px; transition: all 0.3s; }
+        .feature-card:hover { border-color: var(--color-border-hover); box-shadow: var(--shadow-hover); transform: translateY(-4px); }
+        .feature-icon { width: 44px; height: 44px; border-radius: var(--radius-md); background: var(--color-blue-soft); display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 1.2rem; }
+        .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.88rem; color: var(--color-text-secondary); line-height: 1.6; }
+
+        .how-section { background: var(--color-bg-white); }
+        .how-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .how-step { text-align: center; padding: 28px 16px; }
+        .how-num { width: 40px; height: 40px; border-radius: 50%; background: var(--color-blue); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; margin: 0 auto 14px; }
+        .how-step h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+        .how-step p { font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.5; }
+
+        .farming { background: var(--color-bg); }
+        .farming-banner { background: linear-gradient(135deg, #EEF2FF 0%, #F0ECFF 100%); border: 1px solid var(--color-border); border-radius: var(--radius-xl); padding: 52px 44px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .farming-content h2 { font-size: 2rem; font-weight: 800; margin-bottom: 14px; }
+        .farming-content p { font-size: 0.95rem; color: var(--color-text-secondary); line-height: 1.7; margin-bottom: 24px; }
+        .farming-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .farming-stat { background: var(--color-bg-white); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: 20px; text-align: center; }
+        .farming-stat-value { font-size: 1.4rem; font-weight: 800; color: var(--color-blue); }
+        .farming-stat-label { font-size: 0.78rem; color: var(--color-text-secondary); margin-top: 4px; }
+
+        .faq { background: var(--color-bg-white); }
+        .faq-list { max-width: 700px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid var(--color-border); }
+        .faq-question { width: 100%; background: none; border: none; padding: 20px 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-family: var(--font-primary); font-size: 1rem; font-weight: 600; color: var(--color-text); text-align: left; }
+        .faq-question::after { content: '+'; font-size: 1.3rem; color: var(--color-blue); }
+        .faq-item.active .faq-question::after { content: '−'; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .faq-answer p { padding: 0 0 20px; color: var(--color-text-secondary); font-size: 0.9rem; line-height: 1.7; }
+        .faq-item.active .faq-answer { max-height: 300px; }
+
+        .cta-section { text-align: center; padding: 72px 0; }
+        .cta-section h2 { font-size: 2rem; font-weight: 800; margin-bottom: 14px; }
+        .cta-section p { font-size: 1rem; color: var(--color-text-secondary); margin-bottom: 28px; }
+        .btn-primary { background: var(--color-blue); color: #fff; padding: 14px 36px; border-radius: var(--radius-full); font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; display: inline-block; }
+        .btn-primary:hover { background: var(--color-blue-hover); transform: translateY(-2px); }
+
+        footer { background: var(--color-text); color: rgba(255,255,255,0.5); padding: 52px 0 24px; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 36px; margin-bottom: 36px; }
+        .footer-brand .nav-logo { color: #fff; margin-bottom: 8px; }
+        .footer-brand p { font-size: 0.82rem; line-height: 1.7; max-width: 240px; color: rgba(255,255,255,0.5); }
+        .footer-col h4 { color: rgba(255,255,255,0.8); font-size: 0.78rem; font-weight: 700; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+        .footer-col a { display: block; color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.82rem; margin-bottom: 8px; transition: color 0.2s; }
+        .footer-col a:hover { color: #fff; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.08); padding-top: 18px; display: flex; justify-content: space-between; font-size: 0.75rem; }
+
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            .widgets-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-item { border-right: none; border-bottom: 1px solid var(--color-border); }
+            .features-grid { grid-template-columns: 1fr; }
+            .how-grid { grid-template-columns: 1fr 1fr; }
+            .farming-banner { grid-template-columns: 1fr; padding: 32px 24px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 640px) {
+            :root { --spacing-section: 60px; }
+            .nav-links { display: none; position: fixed; top: 64px; left: 0; right: 0; background: #fff; flex-direction: column; padding: 16px 24px; gap: 12px; border-bottom: 1px solid var(--color-border); }
+            .nav-links.active { display: flex; }
+            .hamburger { display: block; }
+            .hero { padding: 110px 0 56px; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero-tokens { gap: 8px; }
+            .hero-token { width: 40px; height: 40px; font-size: 0.65rem; }
+            .how-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebSite","name":"Minswap","url":"https://minswap-exchange.github.io/","description":"Leading decentralized exchange on Cardano. Swap ADA tokens, earn yield, and farm MIN rewards with low fees."}
+    </script>
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Minswap?","acceptedAnswer":{"@type":"Answer","text":"Minswap is the leading DEX on Cardano, processing 70% of the chain's trading volume. Community-driven, no VC backing."}},{"@type":"Question","name":"What is the MIN token?","acceptedAnswer":{"@type":"Answer","text":"MIN is the governance and utility token distributed via Fair Initial Stake Offering. Used for farming rewards and governance."}},{"@type":"Question","name":"Is Minswap safe?","acceptedAnswer":{"@type":"Answer","text":"Minswap uses audited Plutus V2 contracts, non-custodial architecture, and DAO LLC governance."}}]}
+    </script>
+</head>
+<body>
+
+<nav>
+    <div class="nav-inner">
+        <a href="https://minswap-exchange.github.io/" class="nav-logo"><span class="nav-logo-icon">&#128049;</span> Minswap</a>
+        <ul class="nav-links">
+            <li><a href="#features">Features</a></li>
+            <li><a href="#market">Market</a></li>
+            <li><a href="#farming">Farming</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href="CTA_LINK" class="nav-cta">&#128188; Connect wallet</a>
+        <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-tokens">
+            <div class="hero-token">&#128167;</div>
+            <div class="hero-token">S</div>
+            <div class="hero-token">&#9776;</div>
+            <div class="hero-token">&#128568;</div>
+            <div class="hero-token">$</div>
+            <div class="hero-token">&#10687;</div>
+        </div>
+        <h1>Where the community trades on <span>Cardano.</span></h1>
+        <div class="swap-card">
+            <div class="swap-input">
+                <div class="swap-label">You pay</div>
+                <div class="swap-row">
+                    <span class="swap-amount">0.0</span>
+                    <span class="swap-token">&#10687; ADA &#9662;</span>
+                </div>
+            </div>
+            <div class="swap-arrow">&#8595;</div>
+            <div class="swap-input">
+                <div class="swap-label">You receive</div>
+                <div class="swap-row">
+                    <span class="swap-amount">0.0</span>
+                    <span class="swap-token">+ Select token &#9662;</span>
+                </div>
+            </div>
+            <a href="CTA_LINK"><button class="swap-btn">Connect wallet</button></a>
+        </div>
+        <p class="hero-sub">Trade your favorite Cardano tokens with low fees, earn yields and stake for real yield.</p>
+    </div>
+</section>
+
+<section class="stats-strip">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item"><div class="stat-value">$7B+</div><div class="stat-label">Total Volume</div></div>
+            <div class="stat-item"><div class="stat-value">5.9M+</div><div class="stat-label">Total Trades</div></div>
+            <div class="stat-item"><div class="stat-value">70%</div><div class="stat-label">Cardano DEX Share</div></div>
+            <div class="stat-item"><div class="stat-value">599M</div><div class="stat-label">MIN Staked</div></div>
+        </div>
+    </div>
+</section>
+
+<section class="live-widgets" id="market">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Live Market</span>
+            <h2 class="section-title">Real-Time Market Data</h2>
+            <p class="section-subtitle">Track ADA price and Minswap's market position with live charts and tickers.</p>
+        </div>
+        <div class="widgets-grid">
+            <div class="widget-card">
+                <div class="widget-card-header">ADA / USD — TradingView Chart</div>
+                <div id="tradingview-widget" style="height:400px;">
+                    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js" async>
+                    {
+                        "autosize": true,
+                        "symbol": "BINANCE:ADAUSDT",
+                        "interval": "D",
+                        "timezone": "Etc/UTC",
+                        "theme": "light",
+                        "style": "1",
+                        "locale": "en",
+                        "hide_top_toolbar": true,
+                        "hide_legend": false,
+                        "allow_symbol_change": false,
+                        "save_image": false,
+                        "calendar": false,
+                        "support_host": "https://www.tradingview.com"
+                    }
+                    </script>
+                </div>
+            </div>
+            <div class="widget-card">
+                <div class="widget-card-header">Cardano Ecosystem — Price Ticker</div>
+                <div id="coingecko-widget" style="height:400px; overflow-y:auto;">
+                    <script src="https://widgets.coingecko.com/gecko-coin-price-marquee-widget.js"></script>
+                    <gecko-coin-price-marquee-widget locale="en" dark-mode="false" coin-ids="cardano,minswap,sundaeswap,indigo-protocol,liqwid-finance,iagon" initial-currency="usd"></gecko-coin-price-marquee-widget>
+                    <div style="padding:20px;">
+                        <script src="https://widgets.coingecko.com/gecko-coin-price-chart-widget.js"></script>
+                        <gecko-coin-price-chart-widget locale="en" dark-mode="false" coin-id="cardano" initial-currency="usd"></gecko-coin-price-chart-widget>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">Core Features</span>
+            <h2 class="section-title">Everything You Need to DeFi on Cardano</h2>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">&#8644;</div>
+                <h3>Token Swap</h3>
+                <p>Instant swaps for any Cardano native token. Smart order routing finds the best price across all liquidity pools automatically.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128200;</div>
+                <h3>Concentrated Liquidity</h3>
+                <p>Provide liquidity at custom price ranges for maximum capital efficiency. Earn trading fees proportional to your active position.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128176;</div>
+                <h3>Yield Farming</h3>
+                <p>Stake LP tokens or MIN to earn farming rewards. Over 599 million MIN currently locked in farming contracts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128178;</div>
+                <h3>Stableswap Pools</h3>
+                <p>Optimized pools for pegged assets handling 90%+ of all stablecoin volume on Cardano with minimal slippage.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#128202;</div>
+                <h3>Limit & Stop Orders</h3>
+                <p>Set price targets and let Minswap execute automatically. No need to watch charts — trade at the price you want.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">&#8383;</div>
+                <h3>Bitcoin Integration</h3>
+                <p>Native BTC coming to Cardano via Cardinal Protocol. BTC-ADA trading pairs planned as one of the first supported features.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="how-section">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">How It Works</span>
+            <h2 class="section-title">Start Trading in Minutes</h2>
+        </div>
+        <div class="how-grid">
+            <div class="how-step">
+                <div class="how-num">1</div>
+                <h3>Connect Wallet</h3>
+                <p>Link Eternl, Nami, Lace, or any Cardano wallet.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">2</div>
+                <h3>Select Tokens</h3>
+                <p>Choose the token pair and enter your amount.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">3</div>
+                <h3>Confirm Swap</h3>
+                <p>Review the rate and approve the transaction.</p>
+            </div>
+            <div class="how-step">
+                <div class="how-num">4</div>
+                <h3>Receive Tokens</h3>
+                <p>Tokens arrive in your wallet within seconds.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="farming" id="farming">
+    <div class="container">
+        <div class="farming-banner">
+            <div class="farming-content">
+                <span class="section-label">Yield Farming</span>
+                <h2>Earn MIN Rewards by Providing Liquidity</h2>
+                <p>Stake your LP tokens in Minswap farms and earn MIN rewards. Fair distribution model — no VC allocation, no presale. 100% community-owned from day one via the Fair Initial Stake Offering.</p>
+                <a href="CTA_LINK" class="btn-primary">Start Farming</a>
+            </div>
+            <div class="farming-stats">
+                <div class="farming-stat">
+                    <div class="farming-stat-value">599M+</div>
+                    <div class="farming-stat-label">MIN Staked</div>
+                </div>
+                <div class="farming-stat">
+                    <div class="farming-stat-value">FISO</div>
+                    <div class="farming-stat-label">Fair Launch</div>
+                </div>
+                <div class="farming-stat">
+                    <div class="farming-stat-value">10x</div>
+                    <div class="farming-stat-label">Throughput (V2)</div>
+                </div>
+                <div class="farming-stat">
+                    <div class="farming-stat-value">DAO LLC</div>
+                    <div class="farming-stat-label">Governance</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="faq" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">What is Minswap?</button>
+                <div class="faq-answer"><p>Minswap is the leading decentralized exchange on Cardano, processing about 70% of the chain's DEX trading volume. It's entirely community-driven with no VC backing, and focuses on fair access to liquidity and trading for everyone holding ADA or Cardano tokens.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How do I swap tokens on Minswap?</button>
+                <div class="faq-answer"><p>Connect your Cardano wallet (Eternl, Nami, or Lace), choose the tokens you want to trade, enter the amount, and confirm. The platform settles most swaps quickly with low fees.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">What is the MIN token?</button>
+                <div class="faq-answer"><p>MIN is the governance and utility token distributed through a Fair Initial Stake Pool Offering. Earn MIN through yield farming or liquidity provision, and participate in protocol governance decisions.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">How does yield farming work?</button>
+                <div class="faq-answer"><p>Stake LP tokens from liquidity provision or MIN directly to earn additional rewards. Over 599 million MIN are currently locked in farming contracts, reflecting strong community participation.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Is Minswap safe?</button>
+                <div class="faq-answer"><p>Minswap uses audited Plutus V2 smart contracts on Cardano. All trading is non-custodial. Governance is managed by a DAO LLC structure for transparency and community oversight.</p></div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">Can I swap Bitcoin on Minswap?</button>
+                <div class="faq-answer"><p>Native Bitcoin is expected to arrive on Cardano via the Cardinal Protocol integration, making BTC-ADA trading pairs possible on Minswap. Once live, users will be able to swap BTC directly.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="container">
+        <h2>Join the Cardano DeFi Community</h2>
+        <p>Trade, farm, and earn on the most trusted DEX on Cardano. No VC. No presale. 100% community.</p>
+        <a href="CTA_LINK" class="btn-primary">Connect Wallet</a>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <a href="https://minswap-exchange.github.io/" class="nav-logo"><span class="nav-logo-icon">&#128049;</span> Minswap</a>
+                <p>The leading community-driven DEX on Cardano. Swap, farm, and earn with low fees and fair token distribution.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <a href="#features">Swap</a>
+                <a href="#features">Liquidity</a>
+                <a href="#farming">Farming</a>
+                <a href="#market">Market Data</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="#faq">FAQ</a>
+                <a href="https://docs.minswap.org" target="_blank" rel="noopener noreferrer">Documentation</a>
+                <a href="https://github.com/minswap" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+            <div class="footer-col">
+                <h4>Community</h4>
+                <a href="SOCIAL_URL_TWITTER" target="_blank" rel="noopener noreferrer">Twitter</a>
+                <a href="SOCIAL_URL_DISCORD" target="_blank" rel="noopener noreferrer">Discord</a>
+                <a href="SOCIAL_URL_TELEGRAM" target="_blank" rel="noopener noreferrer">Telegram</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 Minswap. All rights reserved.</span>
+            <span>Community-First DEX on Cardano</span>
+        </div>
+    </div>
+</footer>
+
+<script>
+document.querySelector('.hamburger').addEventListener('click',function(){document.querySelector('.nav-links').classList.toggle('active')});
+document.querySelectorAll('.faq-question').forEach(function(b){b.addEventListener('click',function(){var i=this.parentElement;document.querySelectorAll('.faq-item').forEach(function(o){if(o!==i)o.classList.remove('active')});i.classList.toggle('active')})});
+document.querySelectorAll('.nav-links a').forEach(function(l){l.addEventListener('click',function(){document.querySelector('.nav-links').classList.remove('active')})});
+</script>
+
+</body>
+</html>
